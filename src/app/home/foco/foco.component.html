@@ -1,0 +1,11 @@
+<div class="conatiner-fluid">
+  <mat-card class="mt-2 py-3 mx-3">
+    <mat-card-title color="primary">Foco</mat-card-title>
+    <mat-list>
+      <div *ngFor="let tarefa of nextTarefas">
+        <mat-list-item role="listitem">{{tarefa.title}} {{tarefa.descricao}} {{tarefa.vencimento | date: 'medium'}} {{tarefa.criacao | date: 'medium'}} {{tarefa.foco}}</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </mat-card>
+</div>

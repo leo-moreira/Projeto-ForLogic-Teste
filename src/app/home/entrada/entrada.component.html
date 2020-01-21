@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <mat-card class="mt-2 py-3">
+    <form (ngSubmit)="onSubmit()" >
+      <mat-form-field class="mx-4">
+        <input matInput placeholder="Tarefa" [(ngModel)]="tarefa.title" name="title">
+        <mat-error *ngIf="formControl.hasError('required')">
+          Necessário
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="mx-4">
+        <input matInput placeholder="Descrição" [(ngModel)]="tarefa.descricao" name="descricao">
+      </mat-form-field>
+      <mat-form-field class="mx-4">
+        <input matInput type="date" placeholder="Vencimento" [(ngModel)]="tarefa.vencimento" name="vencimento" >
+      </mat-form-field>
+      <mat-form-field class="mx-4">
+        <input matInput type="time" placeholder="Vencimento" [(ngModel)]="tarefa.vencimento" name="vencimento" >
+      </mat-form-field>
+      <mat-checkbox class="mx-5" [(ngModel)]="tarefa.foco" name="foco">Tarefa Foco</mat-checkbox>
+      <button mat-button color="primary"><i class="material-icons">add</i>ADICIONAR</button>
+    </form>
+  </mat-card>
+</div>
+
+<div class="conatiner-fluid">
+  <mat-card class="mt-2 py-3 mx-3">
+    <mat-list>
+      <div *ngFor="let listTarefa of tarefas | async">
+        <mat-list-item role="listitem" *ngIf="!listTarefa.isNext">{{listTarefa.title}} {{listTarefa.descricao}} {{listTarefa.vencimento | date: 'medium' }} {{listTarefa.criacao | date: 'medium'}} {{listTarefa.foco}}
+          <button mat-button (click)="delete(listTarefa.key)"><i class="material-icons">delete</i></button>
+          <button mat-button (click)="edit(listTarefa, listTarefa.key)"><i class="material-icons">edit</i></button>
+          <button mat-button (click)="toNext(listTarefa, listTarefa.key)"><i class="material-icons">double_arrow</i></button>
+        </mat-list-item>
+        <mat-divider *ngIf="!listTarefa.isNext"></mat-divider>
+      </div>
+    </mat-list>
+  </mat-card>
+</div>

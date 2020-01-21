@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-button (click)="sidenav.toggle()"><i class="material-icons">
+        view_headline
+      </i>
+    </button>
+    <span>To List</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container class="h-100" color="white">
+  <mat-sidenav #sidenav mode="side" opened style="width: 15%;" class="pt-3 shadow">
+    <button mat-button color="primary" class="w-100 p-1" routerLink="/" ><i class="material-icons">all_inbox</i>
+      <p>CAIXA DE ENTRADA</p>
+    </button>
+    <mat-divider class="mx-3"></mat-divider>
+    <button mat-button color="primary" class="w-100 p-1" routerLink="next"><i class="material-icons">double_arrow</i>
+      <p>PRÓXIMAS AÇÕES</p>
+    </button>
+    <button mat-button class="w-100 mt-3 p-1" routerLink="vence"><i class="material-icons">event_note</i>
+      <p>PRÓXIMOS 7 DIAS</p>
+    </button>
+    <mat-divider class="mx-3"></mat-divider>
+    <button mat-button color="warn" class="w-100 p-1" routerLink="foco"><i class="material-icons">flash_on</i>
+      <p>TAREFAS FOCO</p>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content >
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
