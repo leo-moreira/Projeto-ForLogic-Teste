@@ -15,7 +15,7 @@ export class NextComponent implements OnInit {
   key = '';
   tarefas: Observable<any[]>;
 
-  constructor(private tarefaService: TarefaService, private tarefaDataService: DataTarefaService) {
+  constructor(private tarefaService: TarefaService) {
 
   }
 

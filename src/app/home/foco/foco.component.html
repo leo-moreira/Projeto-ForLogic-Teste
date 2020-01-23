@@ -1,11 +1,17 @@
 <div class="conatiner-fluid">
-  <mat-card class="mt-2 py-3 mx-3">
-    <mat-card-title color="primary">Foco</mat-card-title>
-    <mat-list>
-      <div *ngFor="let tarefa of nextTarefas">
-        <mat-list-item role="listitem">{{tarefa.title}} {{tarefa.descricao}} {{tarefa.vencimento | date: 'medium'}} {{tarefa.criacao | date: 'medium'}} {{tarefa.foco}}</mat-list-item>
-        <mat-divider></mat-divider>
-      </div>
-    </mat-list>
+  <h2 class="my-3 mx-3">Tarefas Foco</h2>
+  <mat-card class="mt-2 mx-3 shadow-lg">
+    <div *ngFor="let focus of tarefas | async">
+      <mat-card *ngIf="focus.foco || focus.isNext" class="m-3 shadow-md">
+          <mat-card-header>
+          <mat-card-title>{{focus.title}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              <p>{{focus.descricao}}</p>
+              <p>{{focus.vencimento | date: 'short'}}</p>
+              <p>{{focus.criacao | date: 'short'}}</p>
+          </mat-card-content>
+      </mat-card>
+    </div>
   </mat-card>
 </div>

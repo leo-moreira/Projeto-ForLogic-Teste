@@ -20,12 +20,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule} from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
 import { AngularFireModule} from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { CalendarModule } from 'primeng/calendar';
 
 import * as firebase from 'firebase';
 firebase.initializeApp(environment.firebaseConfig);
@@ -58,7 +59,9 @@ firebase.initializeApp(environment.firebaseConfig);
     MatTableModule,
     MatListModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    BsDatepickerModule.forRoot(),
+    CalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

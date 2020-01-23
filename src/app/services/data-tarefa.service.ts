@@ -13,7 +13,7 @@ export class DataTarefaService {
 
   obtemObjeto(tarefa: Tarefa, key: string) {
     this.tarefaSource.next({
-      tarefa,
+      tarefa ,
       key,
     });
   }

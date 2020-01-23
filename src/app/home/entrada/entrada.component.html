@@ -1,6 +1,7 @@
 <div class="container-fluid">
+  <h2 class="my-3">Caixa de Entrada</h2>
   <mat-card class="mt-2 py-3">
-    <form (ngSubmit)="onSubmit()" >
+    <form (ngSubmit)="onSubmit()">
       <mat-form-field class="mx-4">
         <input matInput placeholder="Tarefa" [(ngModel)]="tarefa.title" name="title">
         <mat-error *ngIf="formControl.hasError('required')">
@@ -10,11 +11,10 @@
       <mat-form-field class="mx-4">
         <input matInput placeholder="Descrição" [(ngModel)]="tarefa.descricao" name="descricao">
       </mat-form-field>
-      <mat-form-field class="mx-4">
-        <input matInput type="date" placeholder="Vencimento" [(ngModel)]="tarefa.vencimento" name="vencimento" >
-      </mat-form-field>
-      <mat-form-field class="mx-4">
-        <input matInput type="time" placeholder="Vencimento" [(ngModel)]="tarefa.vencimento" name="vencimento" >
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Vencimento" [(ngModel)]="vencimento" name="vencimento">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <mat-checkbox class="mx-5" [(ngModel)]="tarefa.foco" name="foco">Tarefa Foco</mat-checkbox>
       <button mat-button color="primary"><i class="material-icons">add</i>ADICIONAR</button>
@@ -26,10 +26,13 @@
   <mat-card class="mt-2 py-3 mx-3">
     <mat-list>
       <div *ngFor="let listTarefa of tarefas | async">
-        <mat-list-item role="listitem" *ngIf="!listTarefa.isNext">{{listTarefa.title}} {{listTarefa.descricao}} {{listTarefa.vencimento | date: 'medium' }} {{listTarefa.criacao | date: 'medium'}} {{listTarefa.foco}}
+        <mat-list-item role="listitem" *ngIf="!listTarefa.isNext">{{listTarefa.title}} -- {{listTarefa.descricao}}
+          -- {{ listTarefa.vencimento | date: 'shortDate' }} -- {{listTarefa.criacao | date: 'shortDate'}} --
+          {{listTarefa.foco}}
           <button mat-button (click)="delete(listTarefa.key)"><i class="material-icons">delete</i></button>
           <button mat-button (click)="edit(listTarefa, listTarefa.key)"><i class="material-icons">edit</i></button>
-          <button mat-button (click)="toNext(listTarefa, listTarefa.key)"><i class="material-icons">double_arrow</i></button>
+          <button mat-button (click)="toNext(listTarefa, listTarefa.key)"><i
+              class="material-icons">double_arrow</i></button>
         </mat-list-item>
         <mat-divider *ngIf="!listTarefa.isNext"></mat-divider>
       </div>

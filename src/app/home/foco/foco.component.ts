@@ -1,3 +1,7 @@
+import { Observable } from 'rxjs';
+import { Tarefa } from './../../models/tarefa.model';
+import { TarefaService } from './../../services/tarefa.service';
+import { DataTarefaService } from './../../services/data-tarefa.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FocoComponent implements OnInit {
 
-  constructor() { }
+  tarefa: Tarefa;
+  key = '';
+  tarefas: Observable<any[]>;
+
+  constructor(private tarefaService: TarefaService) { }
 
   ngOnInit() {
+    this.tarefas = this.tarefaService.getAll();
   }
 
 }

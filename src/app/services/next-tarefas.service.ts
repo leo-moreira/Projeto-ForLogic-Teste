@@ -13,19 +13,4 @@ export class NextTarefasService {
 
   constructor(private firebasedb: AngularFireDatabase) {
   }
-
-  addTarefa(titleTask: string, descricaoTask: string, vencimentoTask: number, focoTask: boolean) {
-    this.database.push({
-      title: titleTask,
-      descricao: descricaoTask,
-      vencimento: vencimentoTask,
-      criacao: Date.now(),
-      foco: focoTask,
-    });
-  }
-
-  getTask() {
-    this.database = this.firebasedb.list('nextTarefas');
-    return this.database;
-  }
 }

@@ -1,11 +1,17 @@
 <div class="conatiner-fluid">
-  <mat-card class="mt-2 py-3 mx-3">
-    <mat-card-title>Tarefas para vencer</mat-card-title>
-    <mat-list>
-      <div *ngFor="let tarefa of nextTarefas">
-        <mat-list-item role="listitem">{{tarefa.title}} {{tarefa.descricao}} {{tarefa.vencimento | date: 'medium'}} {{tarefa.criacao | date: 'medium'}} {{tarefa.foco}}</mat-list-item>
-        <mat-divider></mat-divider>
-      </div>
-    </mat-list>
+  <h2 class="my-3 mx-3">Próximos dias</h2>
+  <mat-card class="mt-2 mx-3 shadow-lg">
+    <div *ngFor="let vence of tarefas | async">
+      <mat-card *ngIf="venceTarefa(vence)" class="m-3 shadow-md">
+          <mat-card-header>
+          <mat-card-title>{{vence.title}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              <p>Descrição da tarefa: {{vence.descricao}}</p>
+              <p>Vencimento: {{vence.vencimento | date: 'short'}}</p>
+              <p>Criação: {{vence.criacao | date: 'short'}}</p>
+          </mat-card-content>
+      </mat-card>
+    </div>
   </mat-card>
 </div>
